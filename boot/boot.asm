@@ -4,6 +4,8 @@
 	mov cx, boot
 	call print
 
+	call a20
+
 	xor ax, ax
 	mov es, ax
 	mov bx, 0x1000
@@ -84,12 +86,12 @@ read_kernel:
 	mov cx, kernel
 	call print
 
-	mov ah, 02h
-	mov al, 02h
-	mov ch, 0
-	mov cl, 02h
-	mov dh, 0
-	int 13h
+	mov ah, 0x02
+	mov al, 0x12
+	mov ch, 0x00
+	mov cl, 0x02
+	mov dh, 0x00
+	int 0x13
 	or ah, ah
 	jnz .try
 	
@@ -103,12 +105,11 @@ read_kernel:
 
 ;enables A20 line
 a20:
+	push ax
 	in al, 0x92
 	or al, 0x02
 	out 0x92, al
-	in al, 0x70
-	or al, 0x80
-	out 0x70, al
+	pop ax
 	ret
 ;END OF a20
 
