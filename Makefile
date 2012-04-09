@@ -23,3 +23,13 @@ kernel.o: k_main.o
 KadOS:	kernel.o bind.o
 	bind KadOS.img boot\boot.o kernel.o
 	echo [DONE] KadOS
+
+cd: KadOS
+	mkdir cd
+	copy KadOS.img cd
+	mkisofs -o KadOS.iso -A KadOS -b KadOS.img cd
+	echo [DONE] CDROM
+	"C:\Program Files\Bochs-2.5.1\bochs.exe" -f cd.bxrc -q -log KadOS.log
+
+floppy: KadOS
+	"C:\Program Files\Bochs-2.5.1\bochs.exe" -f floppy.bxrc -q -log KadOS.log
