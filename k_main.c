@@ -1,14 +1,24 @@
 #include <KadOS.h>
 
-extern long code;
-extern long data;
-extern long bss;
-extern long end;
-
 void k_main()
 {
+	disable();
+
 	cls();
+	printf("Initializing Descriptor Tables...\t");
+	init_descriptor_tables();
+	printf("\t[Done]\n");
+
+	printf("Initializing Keyboard...\t\t\t");
+	Keyboard();
+	printf("\t[Done]\n");
+
+	enable();
+
 	puts("Welcome to KadOS!");
-	printf("%p %p %p %p\n", &code, &data, &bss, &end);
-	for(;;);
+	for(;;)
+	{
+		while(!kbhit());
+		putch(getch());
+	}
 }

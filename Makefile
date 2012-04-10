@@ -22,7 +22,7 @@ k_main.o: k_main.c
 
 kernel.o: k_main.o
 	djecho [LINK] kernel.bin
-	ld -T link.ld -o kernel.o boot/head.o k_main.o util/string.o util/port.o video/output.o
+	ld -T link.ld -o kernel.o boot/head.o k_main.o util/string.o util/port.o video/output.o util/isr.o util/interrupt.o util/flush.o util/desc_tables.o video/input.o util/math.o
 
 KadOS:	kernel.o bind.o
 	bind KadOS.img boot\boot.o kernel.o
