@@ -16,6 +16,11 @@ int main(int argc, char* argv[])
 	for(i=2;i<argc;i++)
 	{
 		FILE *in = fopen(argv[i], "rb");
+		if(in == NULL)
+		{
+			printf("File: %s couldn't opened\n", argv[i]);
+			return 1;
+		}
 		int size = getSize(in);
 		unsigned char *buff = (unsigned char*)malloc(sizeof(unsigned char) * size);
 		fread(buff, 1, size, in);
