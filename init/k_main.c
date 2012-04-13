@@ -1,5 +1,7 @@
 #include <KadOS.h>
 
+extern void timer();
+
 void k_main()
 {
 	disable();
@@ -11,6 +13,10 @@ void k_main()
 
 	printf("Initializing Keyboard...\t\t\t");
 	Keyboard();
+	printf("\t[Done]\n");
+
+	printf("Initializing Timer...\t\t\t");
+	timer();
 	printf("\t[Done]\n");
 
 	enable();

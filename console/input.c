@@ -296,7 +296,7 @@ void Keyboard()
 	caps = shift = 0;
 	SendData(0xFF);		
 	SendData(0xF4);		
-	SetRate(0x02);	
+	SetRate(0x00);	
 	UpdateLeds(0);
 	register_interrupt_handler(IRQ1, &keyb_handler);
 }

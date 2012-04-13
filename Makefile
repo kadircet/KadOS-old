@@ -2,7 +2,7 @@
 
 OBJS = boot/head.o init/k_main.o kernel/port.o console/output.o \
 	kernel/isr.o kernel/interrupt.o kernel/flush.o kernel/desc_tables.o \
-	console/input.o
+	console/input.o kernel/timer.o
 
 CFLAGS	=-Wall -O -fstrength-reduce -fomit-frame-pointer -finline-functions -nostdinc -Iinclude
 LDFLAG	=-s -x -M --oformat binary

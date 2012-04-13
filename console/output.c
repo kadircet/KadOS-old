@@ -56,15 +56,6 @@ unsigned char putch(unsigned char ch)
 				putch(' ');
 				cursorx--;
 			}
-			else if(cursorx==0)
-			{
-				cursorx=79;
-				cursory--;
-				updatecursor();
-				putch(' ');
-				cursorx=79;
-				cursory--;
-			}
 			break;
 		case '\t':
 			cursorx = (cursorx + 4) & ~(4 - 1);
@@ -134,7 +125,7 @@ void putdec(int x)
 		number[i++]=x%10+'0';
 		x/=10;
 	}
-	for(;i>=0;i--)
+	for(i--;i>=0;i--)
 		putch(number[i]);
 }
 
@@ -153,8 +144,7 @@ void puthex(int x)
 		number[i++]=(x%16<10)?x%16+'0':x%16-10+'A';
 		x/=16;
 	}
-	i--;
-	for(;i>=0;i--)
+	for(i--;i>=0;i--)
 		putch(number[i]);
 }
 
